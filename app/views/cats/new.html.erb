@@ -1,0 +1,22 @@
+<h1>Create a new cat</h1>
+<%= form_for @cat do |f| %> 
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br>
+<%= f.label :dob %>
+<%= f.date_field :dob %>
+<br>
+
+<%= f.label :breed_id %>
+<%= f.select(:breed_id) do %>
+  <%= options_from_collection_for_select(Breed.all, :id, :id) %>
+<% end %>
+<br>
+
+<%= f.label :user_id %>
+<%= f.select(:user_id) do %>
+  <%= options_from_collection_for_select(User.all, :id, :id) %>
+<% end %>
+<br>
+<%= f.submit 'Create Cat'%>
+<% end %>

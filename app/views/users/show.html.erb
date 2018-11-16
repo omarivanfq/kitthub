@@ -1,0 +1,10 @@
+<h1><%= @user.email %></h1>
+<ul>
+  <% @user.cats.each do |cat| %>
+  <li>
+    <%= cat.name %> <br />
+    <%= link_to 'show', cat_path(cat) %>
+  </li>
+  <% end %>
+<ul>
+<%= link_to 'Add New Cat', new_cat_path %>
