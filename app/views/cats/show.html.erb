@@ -6,3 +6,23 @@
 <h2><%= @cat.breed.name %></h2>
 <h2><%= @cat.dob %></h2>
 
+<h1> Posts </h1>
+<ul>
+<% @cat.posts.each do |post| %>
+<li>
+  <%= post.body %>
+</li>
+<% end %>
+</ul>
+
+
+<h1>Create a new post</h1>
+<%= form_for @post do |f| %> 
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <br>
+  <%= f.hidden_field :cat_id, value: @cat.id %>
+  <%= f.submit 'Publish'%>
+<% end %>
+
+<%= link_to 'Add New Post', new_post_path %>

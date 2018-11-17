@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'posts/show'
+  get 'posts/new'
   get 'cats/new'
   get 'cats/show'
   get 'users/show'
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
   resources :cats
+  resources :posts
   root 'pages#home'
 
   get '/:username', to: 'cats#show'

@@ -1,6 +1,7 @@
 class CatsController < ApplicationController
   def show
     @cat = Cat.find(params[:id])
+    @post = Post.new
   end
 
   def new 
