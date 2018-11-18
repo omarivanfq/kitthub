@@ -16,16 +16,17 @@
 <% end %>
 </ul>
 
-
-<h1>Create a new post</h1>
-<%= form_for @post do |f| %> 
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-  <br>
-  <%= f.file_field :picture%>
-  <br>
-  <%= f.hidden_field :cat_id, value: @cat.id %>
-  <%= f.submit 'Publish'%>
+<%- if current_user == @cat.user %>
+  <h1>Create a new post</h1>
+  <%= form_for @post do |f| %> 
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+    <br>
+    <%= f.file_field :picture%>
+    <br>
+    <%= f.hidden_field :cat_id, value: @cat.id %>
+    <%= f.submit 'Publish'%>
+  <% end %>
+  <%= link_to 'Add New Post', new_post_path %>
 <% end %>
 
-<%= link_to 'Add New Post', new_post_path %>

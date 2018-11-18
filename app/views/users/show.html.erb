@@ -7,4 +7,6 @@
   </li>
   <% end %>
 <ul>
-<%= link_to 'Add New Cat', new_cat_path %>
+<% if current_user == @user %>
+  <%= link_to 'Add New Cat', new_cat_path %>
+<% end %>
