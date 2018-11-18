@@ -2,3 +2,12 @@
 <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
 <h1>Kitthub</h1>
 <h2> Hello! this is home! </h2>
+<ul>
+  <% @posts.each do |post|%>
+  <li>
+  <%= post.body %> <br>
+  <%= image_tag post.picture_url.to_s %>
+  <%= post.cat.username %>
+  </li>
+  <% end %>
+</ul>
