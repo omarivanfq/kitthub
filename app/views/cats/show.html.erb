@@ -6,6 +6,18 @@
 <h2><%= @cat.breed.name %></h2>
 <h2><%= @cat.dob %></h2>
 
+<% if !current_user.following?(@cat) %>
+  <%= form_for(current_user.active_relationships.build) do |f| %>
+    <%= hidden_field_tag :followed_id, @cat.id %>
+    <%= f.submit 'Follow' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.active_relationships.find_by(followed_id: @cat.id), html: {method: :delete}) do |f| %>
+    <%= hidden_field_tag :followed_id, @cat.id %>
+    <%= f.submit 'Unfollow' %>
+  <% end %>
+<% end %>
+
 <h1> Posts </h1>
 <ul>
 <% @cat.posts.each do |post| %>
