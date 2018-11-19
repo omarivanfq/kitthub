@@ -1,10 +1,7 @@
-<h1><%= @cat.name %></h1>
-<h2><%= @cat.user.id %></h2>
-<h2><%= @cat.user.last_name %></h2>
-<h2><%= @cat.user.first_name %></h2>
-<h2><%= @cat.user.email %></h2>
-<h2><%= @cat.breed.name %></h2>
-<h2><%= @cat.dob %></h2>
+<h1>Name: <%= @cat.name %></h1>
+<h2>Breed: <%= @cat.breed.name %></h2>
+<h2>DOB: <%= @cat.dob %></h2>
+<h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
 
 <% if !current_user.following?(@cat) %>
   <%= form_for(current_user.active_relationships.build) do |f| %>
@@ -18,15 +15,11 @@
   <% end %>
 <% end %>
 
-<h1> Posts </h1>
-<ul>
-<% @cat.posts.each do |post| %>
-<li>
-  <%= post.body %>
-  <%= image_tag post.picture_url.to_s%>
-</li>
-<% end %>
-</ul>
+<div style="width: 600px; margin: 0 auto;">
+   <% @cat.posts.each do |post|%>
+     <%= render partial: "posts/post", locals: {post: post}%>
+   <% end %>
+</div>
 
 <%- if current_user == @cat.user %>
   <h1>Create a new post</h1>
@@ -39,6 +32,5 @@
     <%= f.hidden_field :cat_id, value: @cat.id %>
     <%= f.submit 'Publish'%>
   <% end %>
-  <%= link_to 'Add New Post', new_post_path %>
 <% end %>
 

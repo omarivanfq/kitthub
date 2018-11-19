@@ -1,13 +1,8 @@
-<%= link_to 'profile', user_path(current_user) %>
-<%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-<h1>Kitthub</h1>
 <h2> Hello! this is home! </h2>
-<ul>
-  <% @posts.each do |post|%>
-  <li>
-  <%= post.body %> <br>
-  <%= image_tag post.picture_url.to_s %>
-  <%= post.cat.username %>
-  </li>
-  <% end %>
-</ul>
+
+<div style="width: 600px; margin: 0 auto;">
+   <% @posts.each do |post|%>
+     <%= render partial: "posts/post", locals: {post: post}%>
+   <% end %>
+</div>
+

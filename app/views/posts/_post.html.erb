@@ -1,0 +1,5 @@
+<div style="border: 1px solid black; padding: 5px; margin-bottom: 17px; display: flex; flex-direction: column;">
+  <%= post.body %>
+  <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
+  <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0"%>
+</div>

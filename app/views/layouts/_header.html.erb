@@ -1,0 +1,7 @@
+<nav style="background-color: #26847c; padding: 15px;">
+  <%= link_to 'Kitthub', root_path, :style => "color: #ffffff; text-decoration: none; display:block; font-size: 25px; font-weight: bold;"%>
+  <% if current_user %>
+    <%= link_to 'profile', user_path(current_user) %>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>    
+  <% end %>    
+</nav>
