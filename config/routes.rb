@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :posts
   resources :relationships
+  resources :comments
   root 'pages#home'
 
   get '/:username', to: 'cats#show'

@@ -1,0 +1,4 @@
+<div style="border: 1px solid gray; padding: 5px; display: flex;flex-direction:column;">
+  <p style="margin:0;"><%= comment.body %></p>
+  <%= link_to comment.user.email, user_path(comment.user), :style => "margin:0; font-size: 12px; align-self: flex-end;" %>
+</div>

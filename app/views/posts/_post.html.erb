@@ -1,5 +1,6 @@
 <div style="border: 1px solid black; padding: 5px; margin-bottom: 17px; display: flex; flex-direction: column;">
-  <%= post.body %>
+  <%= link_to post.created_at, post_path(post), :style => "font-size: 11px; color: gray;" %>
+  <span> <%= post.body %> </span>
   <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
   <div style="display:flex;">
     <% post.tags.each do |tag| %>
@@ -7,5 +8,5 @@
     <% end %>
   </div>
   <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0;font-size:12px;"%>
-  <%= link_to 'Remove', post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+  <%= link_to 'Remove', post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>   
 </div>
