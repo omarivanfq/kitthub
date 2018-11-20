@@ -19,18 +19,22 @@
    <% @cat.posts.each do |post|%>
      <%= render partial: "posts/post", locals: {post: post}%>
    <% end %>
-</div>
 
 <%- if current_user == @cat.user %>
-  <h1>Create a new post</h1>
+  <h2>New post</h2>
   <%= form_for @post do |f| %> 
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.label :body, :style => "display: block;"%>
+    <%= f.text_area :body, :style => "width: 100%;"%>
     <br>
     <%= f.file_field :picture%>
     <br>
+    <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
     <%= f.hidden_field :cat_id, value: @cat.id %>
     <%= f.submit 'Publish'%>
   <% end %>
 <% end %>
+
+</div>
+
+
 

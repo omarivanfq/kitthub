@@ -1,5 +1,11 @@
 <div style="border: 1px solid black; padding: 5px; margin-bottom: 17px; display: flex; flex-direction: column;">
   <%= post.body %>
   <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
-  <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0"%>
+  <div style="display:flex;">
+    <% post.tags.each do |tag| %>
+    <p style="color: #973aa5; margin-right: 5px;">#<%= tag.name %></p>
+    <% end %>
+  </div>
+  <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0;font-size:12px;"%>
+  <%= link_to 'Remove', post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
 </div>

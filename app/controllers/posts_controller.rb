@@ -16,8 +16,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
   private	
     def post_params
-      params.require(:post).permit(:body, :picture, :cat_id)
+      params.require(:post).permit(:body, :all_tags, :picture, :cat_id)
     end
+
 end
