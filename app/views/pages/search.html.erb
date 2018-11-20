@@ -1,0 +1,7 @@
+<h2>Search: <%= @tag.name %></h2>
+
+<div style="width: 600px; margin: 0 auto;">
+   <% @posts.each do |post|%>
+     <%= render partial: "posts/post", locals: {post: post}%>
+   <% end %>
+</div>

@@ -3,7 +3,7 @@
   <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
   <div style="display:flex;">
     <% post.tags.each do |tag| %>
-    <p style="color: #973aa5; margin-right: 5px;">#<%= tag.name %></p>
+      <%= link_to "#" + tag.name, tag_path(tag.name), :style => "margin-right: 7px;" %>
     <% end %>
   </div>
   <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0;font-size:12px;"%>
