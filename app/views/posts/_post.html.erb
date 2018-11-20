@@ -7,6 +7,9 @@
       <%= link_to "#" + tag.name, tag_path(tag.name), :style => "margin-right: 7px;" %>
     <% end %>
   </div>
+  <%= link_to post.comments.count.to_s + " comments",  post_path(post), :style => "font-size: 11px;" %>
   <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0;font-size:12px;"%>
-  <%= link_to 'Remove', post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>   
+  <% if current_user.id == post.cat.user.id %>
+    <%= link_to 'Remove', post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %> 
+  <% end %>  
 </div>
