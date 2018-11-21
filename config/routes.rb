@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   resources :posts
   resources :relationships
   resources :comments
+  resources :favorites
+  resources :posts do 
+    member do
+      put "like" => "posts#vote"
+    end
+  end
   root 'pages#home'
 
   get '/:username', to: 'cats#show'

@@ -1,0 +1,7 @@
+$('#likes-count-<%= @post.id %>').html("<%= @post.users.count %>");
+<% if @post.users.where(id: current_user.id).exists? %>
+  $('#favorite-btn-<%= @post.id %>').html("Unfavorite");
+<% else %>
+  $('#favorite-btn-<%= @post.id %>').html("Favorite");
+<% end %>
+
