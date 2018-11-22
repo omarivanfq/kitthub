@@ -9,8 +9,6 @@
     <% end %>
   </div>
   <%= link_to post.comments.count.to_s + " comments",  post_path(post), :style => "font-size: 11px;" %>
-  <%= link_to post.users.count.to_s + " favorites",  post_path(post), :style => "font-size: 11px;" %>
-  
   <%= link_to like_post_path(post), id: "favorite-btn-" + post.id.to_s, method: :put, :remote => true do %>
     <% if current_user.favorited?(post) %>
        Unfavorite
