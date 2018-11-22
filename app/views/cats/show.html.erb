@@ -2,6 +2,7 @@
 <h2>Breed: <%= @cat.breed.name %></h2>
 <h2>DOB: <%= @cat.dob %></h2>
 <h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
+<h2 style="border: 1px solid black;">Biography: <%= @cat.profile.biography %> </h2>
 
 <% if !current_user.following?(@cat) %>
   <%= form_for(current_user.active_relationships.build) do |f| %>

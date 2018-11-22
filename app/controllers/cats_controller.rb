@@ -10,6 +10,7 @@ class CatsController < ApplicationController
 
   def create
     @cat = current_user.cats.build(cat_params) #Cat.new(cat_params)
+    @cat.profile = Profile.new
     if @cat.save 
      # flash[:sucess] = "Professor created succesfully"
       redirect_to user_path(User.find(@cat.user_id))

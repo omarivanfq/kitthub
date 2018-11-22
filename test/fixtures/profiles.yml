@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  biography: MyText
+  cat: one
+
+two:
+  biography: MyText
+  cat: two

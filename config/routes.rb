@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'profiles/create'
+  get 'profiles/update'
+  get 'profiles/edit'
+  get 'profiles/destroy'
   get 'posts/show'
   get 'posts/new'
   get 'cats/new'
