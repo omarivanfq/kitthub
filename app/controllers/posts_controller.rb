@@ -33,7 +33,7 @@ class PostsController < ApplicationController
       @favorite = Favorite.new(user_id: current_user.id, post_id: @post.id)
       @favorite.save
    else 
-      @favorite = Favorite.find_by(user_id: current_user.id)
+      @favorite = Favorite.find_by(user_id: current_user.id, post_id: @post.id)
       @favorite.destroy
    end
     respond_to do |format|

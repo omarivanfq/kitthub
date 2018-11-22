@@ -19,15 +19,16 @@ Rails.application.routes.draw do
   resources :relationships
   resources :comments
   resources :favorites
+
   resources :posts do 
     member do
       put "like" => "posts#vote"
     end
   end
-  root 'pages#home'
 
-  get '/:username', to: 'cats#show'
+  root 'pages#home'
   get 'tags/:tag', to: 'pages#search', as: "tag"
-  
+  get 'favorited', to: 'pages#favorited'
+  get 'favorited/:id', to: 'pages#favorited', as: "id"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
