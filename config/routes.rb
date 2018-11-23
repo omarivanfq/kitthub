@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'shares/new'
+  get 'shares/create'
+  get 'shares/destroy'
   get 'profiles/create'
   get 'profiles/update'
   get 'profiles/edit'
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
   resources :relationships
   resources :comments
   resources :favorites
-
+  resources :shares
   resources :posts do 
     member do
       put "like" => "posts#vote"
@@ -34,5 +37,6 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'pages#search', as: "tag"
   get 'favorited', to: 'pages#favorited'
   get 'favorited/:id', to: 'pages#favorited', as: "id"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

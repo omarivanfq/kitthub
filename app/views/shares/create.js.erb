@@ -1,0 +1,6 @@
+<% if @share.errors.empty? %>
+  $('.alert-success').html("El producto ha sido creado con éxito").show();
+  $('#product-modal').modal('hide');
+<% else %>
+  alert('<%= @share.errors.full_messages[0] %>');
+<% end %>

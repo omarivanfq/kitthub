@@ -61,6 +61,7 @@ end
 
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
+gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

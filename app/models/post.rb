@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :favorites
   has_many :users, through: :favorites
+  has_many :shares
+  has_many :profiles, through: :shares
   
   def all_tags=(names)
     self.tags = names.split(",").map do |name|
