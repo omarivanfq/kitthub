@@ -19,17 +19,16 @@
 <div style="width: 600px; margin: 0 auto;">
 
   <%
-    shared_posts = @cat.profile.posts.to_a
+    shared = @cat.profile.shares.to_a
     created_posts = @cat.posts.to_a
-
     show_posts = []
     created_posts.each do |post|
-      while shared_posts.first != nil && shared_posts.first.shares.where(profile_id: @cat.profile.id).first.created_at < post.created_at do
-        show_posts.push(shared_posts.shift)
+      while shared.first != nil && shared.first.created_at < post.created_at do
+        show_posts.push(shared.shift.post)
       end
       show_posts.push(post)
     end
-    show_posts = show_posts + shared_posts
+    show_posts = show_posts + shared.map {|s| s.post}
   %>
 
   <% show_posts.reverse.each do |post|%>
