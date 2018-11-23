@@ -11,6 +11,9 @@ class SharesController < ApplicationController
   end
 
   def destroy
+    @share = Share.find(params[:id])
+    @share.destroy
+    redirect_back(fallback_location: root_path)
   end
   
   private	
