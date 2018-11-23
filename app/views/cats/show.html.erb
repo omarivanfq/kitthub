@@ -17,9 +17,27 @@
 <% end %>
 
 <div style="width: 600px; margin: 0 auto;">
-   <% @cat.posts.each do |post|%>
-     <%= render partial: "posts/post", locals: {post: post}%>
-   <% end %>
+
+  <%
+    shared_posts = @cat.profile.posts.to_a
+    created_posts = @cat.posts.to_a
+
+    show_posts = []
+    created_posts.each do |post|
+      while shared_posts.first != nil && shared_posts.first.shares.where(profile_id: @cat.profile.id).first.created_at < post.created_at do
+        show_posts.push(shared_posts.shift)
+      end
+      show_posts.push(post)
+    end
+    show_posts = show_posts + shared_posts
+  %>
+
+  <% show_posts.reverse.each do |post|%>
+    <% if post.cat_id != @cat.id %>
+      <p> v shared v </p>
+    <% end %>
+    <%= render partial: "posts/post", locals: {post: post}%>
+  <% end %>
 
 <%- if current_user == @cat.user %>
   <h2>New post</h2>
