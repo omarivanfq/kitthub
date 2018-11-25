@@ -1,12 +1,12 @@
 class Post < ApplicationRecord
   mount_uploader :picture, PictureUploader
-  belongs_to :cat, :dependent => :destroy
+  belongs_to :cat
   has_many :taggings
   has_many :tags, through: :taggings
   has_many :comments
   has_many :favorites
   has_many :users, through: :favorites
-  has_many :shares
+  has_many :shares, :dependent => :destroy
   has_many :profiles, through: :shares
   
   def all_tags=(names)
