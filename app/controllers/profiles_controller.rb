@@ -9,5 +9,7 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    @profile = Profile.find(params[:id])
+    @profile.destroy
   end
 end

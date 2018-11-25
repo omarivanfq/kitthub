@@ -4,6 +4,7 @@
 <h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
 <h2 style="border: 1px solid black;">Biography: <%= @cat.profile.biography %> </h2>
 <%= link_to 'Edit', edit_cat_path(@cat) %>
+<%= link_to 'Eliminar', @cat, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <% if !current_user.following?(@cat) %>
   <%= form_for(current_user.active_relationships.build) do |f| %>

@@ -33,6 +33,15 @@ class CatsController < ApplicationController
     end
   end
 
+  def destroy
+    @cat = Cat.find(params[:id])
+    user = @cat.user
+    @cat.posts.destroy_all
+    @cat.profile.destroy  # "dependent: :destroy" in profiles model isn't working, can't figure out why
+    @cat.destroy
+    redirect_to user_path(user)
+  end
+
   private	
     def cat_params
       params.require(:cat).permit(:name, :username, :dob, :breed_id)
