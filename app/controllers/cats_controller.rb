@@ -8,6 +8,20 @@ class CatsController < ApplicationController
     @cat = current_user.cats.build #Cat.new
   end
 
+  def edit
+    @cat = Cat.find(params[:id])
+  end
+ 
+  def update
+    @cat = Cat.find(params[:id])
+    if @cat.update(cat_params)
+      flash[:sucess] = "Cat edited succesfully"
+      redirect_to cat_path(@cat)
+    else
+      render :edit
+    end
+  end
+
   def create
     @cat = current_user.cats.build(cat_params) #Cat.new(cat_params)
     @cat.profile = Profile.new

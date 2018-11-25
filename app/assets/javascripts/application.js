@@ -11,8 +11,10 @@
 // about supported directives.
 //
 
-//= require_tree .
+
 //= require jquery3
 //= require jquery_ujs
 //= require popper
 //= require bootstrap-sprockets
+//= require comment
+//= require_tree .

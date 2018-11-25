@@ -1,0 +1,4 @@
+$(document).ready(function(){
+  $("#post-<%= @post.id %> .body").html("<%= @post.body %>");
+  $("#edit_post_<%= @post.id %>").hide();
+});

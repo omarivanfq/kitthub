@@ -9,7 +9,9 @@
       <% end %>
     </div>
     <%= link_to @post.cat.username, cat_path(@post.cat), :style => "margin: 0;font-size:12px;"%>
-    <%= link_to 'Remove', @post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+    <% if current_user == @post.cat.user %>
+      <%= link_to 'Remove', @post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+    <% end %>
   </div>
   <% @post.comments.each do |comment| %>
     <%= render partial: "comments/comment", locals: {comment: comment}%>
@@ -21,6 +23,5 @@
     <%= f.hidden_field :post_id, value: @post.id %>
     <%= f.submit 'Comment'%>
   <% end %>
-
 </div>
 

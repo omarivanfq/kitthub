@@ -1,0 +1,17 @@
+<%= form_for @cat do |f| %> 
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <br>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :dob %>
+  <%= f.date_field :dob %>
+  <br>
+  <%= f.label :breed_id %>
+  <%= f.select(:breed_id) do %>
+  <%= options_from_collection_for_select(Breed.all, :id, :name) %>
+  <% end %>
+  <br>
+  <%= f.submit 'Edit Cat'%>
+<% end %>

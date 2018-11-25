@@ -1,0 +1,6 @@
+<%= form_for post, html: { style: "display:none;"}, :remote => true do |f| %> 
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
+  <%= f.submit 'Publish'%>
+<% end %>

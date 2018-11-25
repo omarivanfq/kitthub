@@ -21,10 +21,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+  end
+
   def destroy
     @post = Post.find(params[:id])
+    cat = @post.cat
     @post.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to cat_path(cat)
   end
 
   def vote

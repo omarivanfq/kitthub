@@ -1,7 +1,11 @@
-<div style="border: 1px solid black; padding: 5px; margin-bottom: 17px; display: flex; flex-direction: column;">
+<div id="post-<%= post.id %>" style="border: 1px solid black; padding: 5px; margin-bottom: 17px; display: flex; flex-direction: column;">
   <%= link_to post.created_at, post_path(post), :style => "font-size: 11px; color: gray;" %>
   <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0;font-size:12px;"%>
-  <span> <%= post.body %> </span>
+  <span class="body"> <%= post.body %> </span>
+  <% if current_user == post.cat.user %>
+   <%= render partial: "posts/edit", locals: {post: post} %>
+   <a class="edit-post-btn" data-post-id="<%= post.id %>" href="#">Edit</a>
+  <% end %>
   <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
   <div style="display:flex;">
     <% post.tags.each do |tag| %>
@@ -16,12 +20,6 @@
        Favorite
     <% end %>
   <% end %>
- 
   <p><span class="likes-count" id="likes-count-<%= post.id %>"> <%= post.users.count %> </span> Favorites</p>
-
   <%= link_to "share", new_share_path(:post_id => post.id), remote: true %>
-
-  <% if current_user.id == post.cat.user.id %>
-    <%= link_to 'Remove', post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %> 
-  <% end %>  
 </div>
