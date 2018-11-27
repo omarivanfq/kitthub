@@ -1,9 +1,11 @@
+<%= image_tag @cat.profile.picture_url.to_s, :style => "width: 300px"%>
 <h1>Name: <%= @cat.name %></h1>
 <h2>Breed: <%= @cat.breed.name %></h2>
 <h2>DOB: <%= @cat.dob %></h2>
 <h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
 <h2 style="border: 1px solid black;">Biography: <%= @cat.profile.biography %> </h2>
-<%= link_to 'Edit', edit_cat_path(@cat) %>
+<%= link_to 'Edit Account', edit_cat_path(@cat) %>
+<%= link_to 'Edit Profile', edit_profile_path(@cat.profile) %>
 <%= link_to 'Eliminar', @cat, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <% if !current_user.following?(@cat) %>

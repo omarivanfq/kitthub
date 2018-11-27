@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  mount_uploader :picture, PictureUploader
   def name
     self.cat.username
   end

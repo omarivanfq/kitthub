@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :favorites
   resources :shares
+  resources :profiles
   resources :posts do 
     member do
       put "like" => "posts#vote"
