@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   mount_uploader :picture, PictureUploader
   belongs_to :cat
-  has_many :taggings
+  has_many :taggings, :dependent => :destroy
   has_many :tags, through: :taggings
   has_many :comments
   has_many :favorites
