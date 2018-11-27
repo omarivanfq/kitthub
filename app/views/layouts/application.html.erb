@@ -9,7 +9,9 @@
   </head>
 
   <body>
-    <%= render "layouts/header" %>
+     <% if current_user %>
+      <%= render "layouts/header" %>
+     <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
