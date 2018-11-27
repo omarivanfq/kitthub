@@ -1,8 +1,10 @@
-<h2> Hello! this is home! </h2>
-
-<div style="width: 600px; margin: 0 auto;">
-   <% @posts.each do |post|%>
-     <%= render partial: "posts/post", locals: {post: post}%>
-   <% end %>
+<%= stylesheet_link_tag 'feed' %>
+<div class="container">
+  <div class="left-sidebar"></div>
+  <div class="main">
+    <% @posts.each do |post|%>
+      <%= render partial: "posts/post", locals: {post: post}%>
+    <% end %>
+  </div>
+  <div class="right-sidebar"></div>
 </div>
-

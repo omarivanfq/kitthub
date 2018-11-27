@@ -53,6 +53,8 @@ default: &default
     password:
     timeout: 5000
 
+development:
+  <<: *default
 
 production:
   <<: *default

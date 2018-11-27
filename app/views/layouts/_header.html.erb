@@ -1,8 +1,11 @@
-<nav style="background-color: #26847c; padding: 15px;">
-  <%= link_to 'Kitthub', root_path, :style => "color: #ffffff; text-decoration: none; display:block; font-size: 25px; font-weight: bold;"%>
+<nav class="header">
+  <img src="/assets/images/cat-sil-white.png" id="cat-sil"/>
   <% if current_user %>
-    <%= link_to 'profile', user_path(current_user) %>
+    <%= link_to 'Profile', user_path(current_user) %>
+    <%= link_to 'Favorites', favorited_path %>    
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
-    <%= link_to 'favorites', favorited_path %>    
   <% end %>    
+  <%= link_to root_path do %>
+    <img src="/assets/images/logo.png" id="logo"/>
+  <% end %>
 </nav>

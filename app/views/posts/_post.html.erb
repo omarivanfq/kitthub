@@ -1,33 +1,44 @@
-<div id="post-<%= post.id %>" style="border: 1px solid black; padding: 5px; margin-bottom: 17px; display: flex; flex-direction: column;">
-  <%= link_to post.created_at, post_path(post), :style => "font-size: 11px; color: gray;" %>
-  <%= link_to post.cat.username, cat_path(post.cat), :style => "margin: 0;font-size:12px;"%>
-  <span class="body"> <%= post.body %> </span>
-  <% if current_user == post.cat.user %>
-   <%= render partial: "posts/edit", locals: {post: post} %>
-   <a class="edit-post-btn" data-post-id="<%= post.id %>" href="#">Edit</a>
+<div id="post-<%= post.id %>" class="post <% if post.picture_url == nil %> no-pic <% end %>">
+  <%= link_to post.created_at, post_path(post), :class => "date" %>
+  <div class="post-container">
+  <% if post.picture_url != nil %>
+    <%= image_tag post.picture_url.to_s, :class => "picture" %>
   <% end %>
-  <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
+  <div class="post-content <%=  %>">
+    <%= link_to post.cat.username, cat_path(post.cat) %>
 
-  <div style="display:flex;">
-    <% post.tags.each do |tag| %>
-      <%= link_to "#" + tag.name, tag_path(tag.name), :style => "margin-right: 7px;" %>
+    <span class="body"> <%= post.body %> </span>
+    <% if current_user == post.cat.user %>
+      <%= render partial: "posts/edit", locals: {post: post} %>
+      <a class="edit-post-btn" data-post-id="<%= post.id %>" href="#">Edit</a>
     <% end %>
+
+    <div >
+      <% post.tags.each do |tag| %>
+        <%= link_to "#" + tag.name, tag_path(tag.name), :class => "tag" %>
+      <% end %>
+    </div>
+ 
+    <div class="interact">
+      <%= link_to post.comments.count.to_s + " comments",  post_path(post), :style => "margin-right: 8px;" %>
+      <p><span class="likes-count" id="likes-count-<%= post.id %>"> <%= post.users.count %> </span> Favorites</p>
+    </div>
+    
+      <%= link_to like_post_path(post), id: "favorite-btn-" + post.id.to_s, method: :put, :style => "margin-right: 8px;", :remote => true do %>
+        <% if current_user.favorited?(post) %>
+           Unfavorite
+        <% else %>
+           Favorite
+        <% end %>
+      <% end %>
+
+      <span class="share-container">
+        <% if post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id}) != nil %>
+          <%= render partial: "shares/unshare", locals: {share: post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id})} %>
+        <% else %>
+          <%= render partial: "shares/share", locals: {post: post} %>
+        <% end %>
+      </span>
   </div>
-
-  <%= link_to post.comments.count.to_s + " comments",  post_path(post), :style => "font-size: 11px;" %>
-  <%= link_to like_post_path(post), id: "favorite-btn-" + post.id.to_s, method: :put, :remote => true do %>
-    <% if current_user.favorited?(post) %>
-       Unfavorite
-    <% else %>
-       Favorite
-    <% end %>
-  <% end %>
-  <p><span class="likes-count" id="likes-count-<%= post.id %>"> <%= post.users.count %> </span> Favorites</p>
-  <span class="share-container">
-  <% if post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id}) != nil %>
-    <%= render partial: "shares/unshare", locals: {share: post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id})} %>
-  <% else %>
-    <%= render partial: "shares/share", locals: {post: post} %>
-  <% end %>
-  </span>
+  </div>
 </div>
