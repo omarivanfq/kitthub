@@ -1,6 +1,11 @@
-<% if @share.errors.empty? %>
+  console.log($('#product-modal-<%= @share.post_id %>'));
   $('.alert-success').html("El producto ha sido creado con éxito").show();
-  $('#product-modal').modal('hide');
+  $('#product-modal-<%= @share.post_id %>').modal('hide');
+  $('#post-<%= @share.post_id %> .share-container').html("<%= j render :partial => 'shares/unshare', locals: {share: @share} %>");
+<% if @share.errors.empty? %>
 <% else %>
   alert('<%= @share.errors.full_messages[0] %>');
 <% end %>
+
+
+

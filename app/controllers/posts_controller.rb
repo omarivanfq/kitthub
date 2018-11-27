@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
- # before_action :set_post, only [:vote]
+  before_action :authenticate_user!
   respond_to :js, :json, :html
   
   def show
@@ -12,10 +12,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)#current_user.cats.build(cat_params) #Cat.new(cat_params)
+    @post = Cat.find(post_params[:cat_id]).posts.build(post_params)
     if @post.save 
      # flash[:sucess] = "Professor created succesfully"
-      redirect_to cat_path(Cat.find(@post.cat_id))
+      redirect_to cat_path(Cat.find(post_params[:cat_id]))
     else
       render :new
     end

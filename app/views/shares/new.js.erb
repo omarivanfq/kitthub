@@ -1,1 +1,2 @@
 $('<%= j render "form", locals: {post: @post}, title: "Share this post" %>').modal();
+$('#product-modal-<%= @post_id %>').modal('show');

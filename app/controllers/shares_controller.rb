@@ -1,5 +1,4 @@
 class SharesController < ApplicationController
-
   def new
     @post = Post.find(params[:post_id])
     @share = Share.new
@@ -12,8 +11,8 @@ class SharesController < ApplicationController
 
   def destroy
     @share = Share.find(params[:id])
+    @post = @share.post
     @share.destroy
-    redirect_back(fallback_location: root_path)
   end
   
   private	

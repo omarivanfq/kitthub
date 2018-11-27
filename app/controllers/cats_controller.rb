@@ -1,4 +1,5 @@
 class CatsController < ApplicationController
+  before_action :authenticate_user!
   def show
     @cat = Cat.find(params[:id])
     @post = Post.new

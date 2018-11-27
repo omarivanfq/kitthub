@@ -7,11 +7,13 @@
    <a class="edit-post-btn" data-post-id="<%= post.id %>" href="#">Edit</a>
   <% end %>
   <%= image_tag post.picture_url.to_s, :style => "width: 300px"%>
+
   <div style="display:flex;">
     <% post.tags.each do |tag| %>
       <%= link_to "#" + tag.name, tag_path(tag.name), :style => "margin-right: 7px;" %>
     <% end %>
   </div>
+
   <%= link_to post.comments.count.to_s + " comments",  post_path(post), :style => "font-size: 11px;" %>
   <%= link_to like_post_path(post), id: "favorite-btn-" + post.id.to_s, method: :put, :remote => true do %>
     <% if current_user.favorited?(post) %>
@@ -21,5 +23,11 @@
     <% end %>
   <% end %>
   <p><span class="likes-count" id="likes-count-<%= post.id %>"> <%= post.users.count %> </span> Favorites</p>
-  <%= link_to "share", new_share_path(:post_id => post.id), remote: true %>
+  <span class="share-container">
+  <% if post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id}) != nil %>
+    <%= render partial: "shares/unshare", locals: {share: post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id})} %>
+  <% else %>
+    <%= render partial: "shares/share", locals: {post: post} %>
+  <% end %>
+  </span>
 </div>

@@ -1,5 +1,9 @@
 <h1><%= @user.email %></h1>
-<%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+<h2><%= @user.first_name %>  <%= @user.last_name %></h2>
+<% if current_user == @user %>
+  <%= link_to 'Edit', edit_user_registration_path(@user) %>
+  <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+<% end %>
 <ul>
   <% @user.cats.each do |cat| %>
   <li>
