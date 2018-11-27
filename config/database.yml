@@ -14,7 +14,7 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
   database: kitthub_development
@@ -52,3 +52,8 @@ development:
     username: omarivan
     password:
     timeout: 5000
+
+
+production:
+  <<: *default
+
