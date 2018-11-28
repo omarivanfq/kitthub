@@ -1,27 +1,46 @@
-<%= image_tag @cat.profile.picture_url.to_s, :style => "width: 300px"%>
-<h1>Name: <%= @cat.name %></h1>
-<h2>Breed: <%= @cat.breed.name %></h2>
-<h2>DOB: <%= @cat.dob %></h2>
-<h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
-<h2 style="border: 1px solid black;">Biography: <%= @cat.profile.biography %> </h2>
-<%= link_to 'Edit Account', edit_cat_path(@cat) %>
-<%= link_to 'Edit Profile', edit_profile_path(@cat.profile) %>
-<%= link_to 'Eliminar', @cat, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-<% if !current_user.following?(@cat) %>
-  <%= form_for(current_user.active_relationships.build) do |f| %>
-    <%= hidden_field_tag :followed_id, @cat.id %>
-    <%= f.submit 'Follow' %>
+<%= stylesheet_link_tag 'catprofile' %>
+<div class="container">
+<div class="side-bar">
+  <% if @cat.profile.picture_url != nil %>
+    <%= image_tag @cat.profile.picture_url.to_s, :id => "profile-pic"%>
+  <% else %>
+    <img src="/assets/images/cat-unknown.png" id="profile-pic"/>
   <% end %>
-<% else %>
-  <%= form_for(current_user.active_relationships.find_by(followed_id: @cat.id), html: {method: :delete}) do |f| %>
-    <%= hidden_field_tag :followed_id, @cat.id %>
-    <%= f.submit 'Unfollow' %>
+  <h1 class="name"><%= @cat.name %></h1>
+  <p><span id="followers-count"><%= @cat.followers.count %></span> followers</p>
+
+  <% if !current_user.following?(@cat) %>
+    <%= form_for(current_user.active_relationships.build) do |f| %>
+      <%= hidden_field_tag :followed_id, @cat.id %>
+      <%= f.submit 'Follow', :class => "follow-btn" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.active_relationships.find_by(followed_id: @cat.id), html: {method: :delete}) do |f| %>
+      <%= hidden_field_tag :followed_id, @cat.id %>
+      <%= f.submit 'Unfollow', :class => "follow-btn" %>
+    <% end %>
   <% end %>
-<% end %>
 
-<div style="width: 600px; margin: 0 auto;">
+  <% if current_user.owns?(@cat) %>
+    <%= link_to 'Account', edit_cat_path(@cat) %>
+    <%= link_to 'Edit Profile', edit_profile_path(@cat.profile) %>
+    <%= link_to 'Delete', @cat, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
 
+<div class="main">
+  <div class="cat-menu">
+    <a id="posts-btn" href="#">Posts</a>
+    <a id="about-btn" href="#">About</a>
+  </div>
+  <div id="about">
+    <h2>Biography: <%= @cat.profile.biography %> </h2>
+    <h2>Name: <%= @cat.name %></h2>
+    <h2>Breed: <%= @cat.breed.name %></h2>
+    <h2>DOB: <%= @cat.dob %></h2>
+    <h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
+  </div>
+<div id="posts">
   <%
     shared = @cat.profile.shares.to_a
     created_posts = @cat.posts.to_a
@@ -34,6 +53,9 @@
     end
     show_posts = show_posts + shared.map {|s| s.post}
   %>
+  <%- if current_user == @cat.user %>
+    <%= render partial: "posts/new", locals: {cat: @cat} %>
+  <% end %>
 
   <% show_posts.reverse.each do |post|%>
     <% if post.cat_id != @cat.id %>
@@ -42,12 +64,9 @@
     <%= render partial: "posts/post", locals: {post: post}%>
   <% end %>
 
-<%- if current_user == @cat.user %>
-  <h2>New post</h2>
-  <%= render partial: "posts/new", locals: {cat: @cat} %>
-<% end %>
+  </div>
 
 </div>
-
+</div>
 
 

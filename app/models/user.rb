@@ -22,6 +22,10 @@ class User < ApplicationRecord
     following.include?(cat)
   end
 
+  def owns?(cat)
+    cats.include?(cat)
+  end
+  
   def favorited?(post)
     posts.where(id: post.id).exists?
   end

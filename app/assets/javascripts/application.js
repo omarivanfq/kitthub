@@ -11,10 +11,23 @@
 // about supported directives.
 //
 
-
 //= require jquery3
 //= require jquery_ujs
 //= require popper
 //= require bootstrap-sprockets
 //= require comment
 //= require_tree .
+
+$(document).ready(function(){
+  $("#about-btn").on("click", function(){
+    $("#posts").hide();
+    $("#about").show();
+  });
+  $("#posts-btn").on("click", function(){
+    $("#posts").show();
+    $("#about").hide();
+  });
+  
+});
+
+

@@ -1,10 +1,12 @@
-<%= form_for Post.new do |f| %> 
-  <%= f.label :body, :style => "display: block;"%>
-  <%= f.text_area :body, :style => "width: 100%;"%>
-  <br>
-  <%= f.file_field :picture%>
-  <br>
-  <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
-  <%= f.hidden_field :cat_id, value: cat.id %>
-  <%= f.submit 'Publish'%>
+<%= form_for Post.new do |f| %>
+  <label> New post </label>
+  <div class="new-post-content">
+    <%= f.text_area :body %>
+    <span>
+      <%= f.file_field :picture %>
+      <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
+      <%= f.hidden_field :cat_id, value: cat.id %>
+    </span>
+  </div>
+  <%= f.submit 'Publish' %>
 <% end %>

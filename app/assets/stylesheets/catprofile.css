@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.side-bar {
+  width: 20%;
+  min-width: 145px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0,0,0,0.12);
+  align-items: center;
+  border-radius: 2px;
+}
+
+.side-bar a {
+  color: rgba(0,0,0,0.55);
+  font-size: 20px;
+}
+
+.side-bar a:hover {
+  color: rgba(0,0,0,0.75);
+}
+
+.main {
+  width: 77%;
+  padding: 0 25px;
+}
+
+#about {
+  width: 85%;
+  margin: 0 auto;
+  padding: 15px 0;
+  display: none;
+}
+
+#about  h2 {
+  font-size: 22px;
+}
+
+#profile-pic {
+  width: 150px;
+  height: 150px;
+  margin-top: -20px;
+  -webkit-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.31);
+  -moz-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.31);
+  box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.31);
+}
+
+.name {
+  margin: 15px 0;
+  font-size: 26px;
+}
+
+.follow-btn {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(0,0,0,0.5);
+  transition: all 0.2s ease-in;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.follow-btn:hover {
+  background-color: rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+
+.cat-menu {
+  width: 100%;
+  height: 46px;
+  background-color: rgba(42,54,55,0.77);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cat-menu a {
+  font-size: 30px;
+}
+
+#posts {
+ padding: 17px 10px;
+}
+
+.post {
+  width: 80%;
+  margin: 22px auto;
+}
+
+.new_post label {
+  margin: 0;
+}
+
+.new_post {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.new-post-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.new_post .new-post-content span {
+  display: flex;
+  flex-direction: column;
+}
+
+.new_post .new-post-content textarea {
+  resize: none;
+  width: 65%;
+}
+
+.new_post .new-post-content span {
+  resize: none;
+  width: 33%;
+}
+
+.new_post input[type="submit"] {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(0,0,0,0.5);
+  transition: all 0.2s ease-in;
+  color: #ffffff;
+  margin-top: 15px;
+}
+
+.new_post input[type="submit"]:hover {
+  background-color: rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+
+/*
+#profile-pic {
+  width: 120px;
+  height: 120px;
+  position: fixed;
+  left: calc(50% - 65px);
+  top: 30px;
+  -webkit-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.31);
+  -moz-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.31);
+  box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.31);
+}
+*/
+
+
