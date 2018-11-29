@@ -1,12 +1,13 @@
 class CatsController < ApplicationController
   before_action :authenticate_user!
+
   def show
     @cat = Cat.find(params[:id])
     @post = Post.new
   end
 
   def new 
-    @cat = current_user.cats.build #Cat.new
+    @cat = current_user.cats.build
   end
 
   def edit

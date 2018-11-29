@@ -1,27 +1,25 @@
-<div style="width: 600px; margin: 0 auto;">
-  <div style="border: 2px solid gray;display:flex; flex-direction: column; align-items: center;">
-      <%= link_to @post.created_at, post_path(@post), :style => "font-size: 11px; color: gray;" %>
+<%= stylesheet_link_tag 'comments' %>
+<%= stylesheet_link_tag 'postshow' %>
+<div class="container">
+  <div class="full-post">
+    <%= link_to @post.created_at, post_path(@post), :class => "created-at" %>
+    <%= link_to @post.cat.username, cat_path(@post.cat), :class => "cat-username"%>
+    <%= image_tag @post.picture_url.to_s%>
     <%= @post.body %>
-    <%= image_tag @post.picture_url.to_s, :style => "width: 500px"%>
-    <div style="display:flex;">
+    <div class="tags">
       <% @post.tags.each do |tag| %>
-        <%= link_to "#" + tag.name, tag_path(tag.name), :style => "margin-right: 7px;" %>
+        <%= link_to "#" + tag.name, tag_path(tag.name), :class => "tag" %>
       <% end %>
     </div>
-    <%= link_to @post.cat.username, cat_path(@post.cat), :style => "margin: 0;font-size:12px;"%>
     <% if current_user == @post.cat.user %>
-      <%= link_to 'Remove', @post, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+      <%= link_to 'Remove', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   </div>
+  <div class="comments">
   <% @post.comments.each do |comment| %>
     <%= render partial: "comments/comment", locals: {comment: comment}%>
   <% end %>
-  <%= form_for @comment do |f| %> 
-    <%= f.label :body %> <br>
-    <%= f.text_area :body %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.submit 'Comment'%>
-  <% end %>
+  </div>
+  <%= render partial: "comments/new", locals: {comment: @comment} %>
 </div>
 

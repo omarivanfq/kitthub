@@ -2,6 +2,9 @@
 <div class="container">
   <div class="left-sidebar"></div>
   <div class="main">
+    <% if current_user.following.count == 0 %>
+       <h3> Your feed seems lonely... maybe you should follow some cats? </h3>
+    <% end %>
     <% @posts.each do |post|%>
       <%= render partial: "posts/post", locals: {post: post}%>
     <% end %>

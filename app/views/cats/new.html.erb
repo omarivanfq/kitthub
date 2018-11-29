@@ -1,4 +1,11 @@
-<h1>Create a new cat</h1>
+<% if @cat.errors.any? 
+    @cat.errors.each do |attribute, message| %>
+     <h5> <%= attribute %> <%= message %> </h5>
+  <% end 
+end %>
+
+<%= stylesheet_link_tag 'form' %>
+<h1 class="title">Add a new cat</h1>
 <%= form_for @cat do |f| %> 
 <%= f.label :username %>
 <%= f.text_field :username %>

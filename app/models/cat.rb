@@ -1,5 +1,15 @@
 class Cat < ApplicationRecord
   validates_uniqueness_of :username, :case_sensitive => false
+  validates_length_of :username, minimum: 6, maximum: 14
+  validates :dob, presence: true
+  validate :dob_before_today
+
+  def dob_before_today
+    if dob.present? && dob > Date.today
+      errors.add(:dob, "must be before today")
+    end
+  end
+
   belongs_to :breed
   belongs_to :user
   has_one :profile, dependent: :destroy

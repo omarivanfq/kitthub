@@ -1,15 +1,15 @@
-<div id="comment-<%= comment.id %>" class="comment" style="border: 1px solid gray; padding: 5px; display: flex;flex-direction:column;">
-  <p style="margin:0;"><%= comment.body %></p>
-  <p style= "margin:0; font-size: 11px; align-self: flex-end; color: gray;"> <%= comment.created_at %> </p>
+<div id="comment-<%= comment.id %>" class="comment">
+  <p class="created-at"> <%= comment.created_at %> </p>
+  <%= link_to comment.user.email, user_path(comment.user), :class => "user-email"%>
+  <p class="body"> <%= comment.body %> </p>
   <% if current_user == comment.user %>
-  <div class="edit-comment-form" style="display:none;">
-    <%= form_for comment do |f| %> 
-      <%= f.text_field :body, :style => "display:block;" %>
-      <%= f.submit 'Edit', :style => "display:block;" %>
-    <% end %>
-  </div>
-  <a class="edit-comment-btn" data-comment-id="<%= comment.id %>" href="#" style="align-self: flex-end;">Edit</a>
+    <div class="edit-comment-form">
+      <%= form_for comment do |f| %> 
+        <%= f.text_field :body %>
+        <%= f.submit 'Edit'%>
+      <% end %>
+    </div>
+    <a class="edit-comment-btn" data-comment-id="<%= comment.id %>" href="#">Edit</a>
+    <%= link_to 'remove', comment, method: :delete, data: { confirm: 'Are you sure?' }%> 
   <% end %>
-  <%= link_to 'remove', comment, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;align-self: flex-end;" %> 
-  <%= link_to comment.user.email, user_path(comment.user), :style => "margin:0; font-size: 12px; align-self: flex-end;" %>
 </div>
