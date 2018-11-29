@@ -1,0 +1,72 @@
+.cat-name {
+  padding: 7px;
+  font-size: 17px;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.user-names,
+.user-email {
+  text-align: center;
+  margin: 0;
+}
+
+.user-email {
+  font-size: 24px;
+}
+
+.user-options {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.user-options a {
+  margin: 0 10px;
+}
+
+#new-cat-link {
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  background-color: rgba(49,74,114, 0.7);
+  height: 30px;
+  margin: 15px 0;
+  font-size: 20px;
+  transition: all 0.3s ease-in;
+}
+
+#new-cat-link:hover {
+  font-size: 21px;
+  background-color: rgba(49,74,114, 0.85);
+}
+
+.cats-container {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.cat-show {
+  width: 185px;
+  height: 185px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0 20px 20px 0;
+  transition: all 0.3s ease-in;
+  position: relative;
+}
+
+.cat-show:hover {
+  transform: scale(1.05);
+}
+
+
+
+

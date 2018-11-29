@@ -38,7 +38,7 @@
     <h2>Name: <%= @cat.name %></h2>
     <h2>Breed: <%= @cat.breed.name %></h2>
     <h2>DOB: <%= @cat.dob %></h2>
-    <h2>Hooman: <%= @cat.user.first_name %> <%= @cat.user.last_name %></h2>
+    <h2>Human: <%= link_to @cat.user.email, user_path(@cat.user) %> </h2>
   </div>
 <div id="posts">
   <%

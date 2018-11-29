@@ -1,17 +1,31 @@
-<h1><%= @user.email %></h1>
-<h2><%= @user.first_name %>  <%= @user.last_name %></h2>
+<%= stylesheet_link_tag 'userprofile' %>
+
 <% if current_user == @user %>
-  <%= link_to 'Edit', edit_user_registration_path(@user) %>
-  <%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'Are you sure?' }, :style => "font-size:12px;" %>
+  <div class="user-options">
+    <%= link_to 'Edit Profile', edit_user_registration_path(@user) %>
+    <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Are you sure?' }%>
+  </div>
 <% end %>
-<ul>
-  <% @user.cats.each do |cat| %>
-  <li>
-    <%= cat.name %> <br />
-    <%= link_to 'show', cat_path(cat) %>
-  </li>
+
+<h2 class="user-names"><%= @user.first_name %> <%= @user.last_name %></h2>
+<h2 class="user-email"><%= @user.email %></h2>
+
+<% if current_user == @user %>
+  <%= link_to 'New Cat', new_cat_path, :id => "new-cat-link" %>
+<% end %>
+
+<div class="cats-container">
+   <% @user.cats.each do |cat| %>
+    <%= link_to cat_path(cat) do %>
+      <div class="cat-show" style="background-image: url(
+         <% if cat.profile.picture_url != nil %>
+           <%= cat.profile.picture_url %>
+         <% else %>
+            /assets/images/cat-unknown.png
+         <% end %>
+      );">
+      <h2 class="cat-name"><%= cat.username %></h2>
+    </div>
+    <% end %>
   <% end %>
-<ul>
-<% if current_user == @user %>
-  <%= link_to 'Add New Cat', new_cat_path %>
-<% end %>
+</div>
