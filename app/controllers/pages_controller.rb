@@ -11,10 +11,20 @@ class PagesController < ApplicationController
       show_posts.push(post)
     end
     @posts = show_posts.reverse
+    @random_tags = []
+    i = 0
+    while i < Tag.count && i < 10 do 
+      offset = rand(Tag.count)
+      @random_tags.push(Tag.offset(offset).first)
+      i += 1
+    end
   end
   def search
     @tag = Tag.find_by(name: params[:tag])
     @posts = Post.tagged_with(params[:tag])
+  end
+  def following
+    @user = User.find(params[:id])
   end
   def favorited
     if params.has_key?(:id)

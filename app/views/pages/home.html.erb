@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag 'feed' %>
 <div class="container">
-  <div class="left-sidebar"></div>
+  <div class="left-sidebar">
+    <h4>Explore:</h4> 
+    <% @random_tags.each do |tag| %>
+        <%= link_to "#" + tag.name, tag_path(tag.name), :class => "tag" %>
+     <% end %>
+  </div>
   <div class="main">
     <% if current_user.following.count == 0 %>
        <h3> Your feed seems lonely... maybe you should follow some cats? </h3>

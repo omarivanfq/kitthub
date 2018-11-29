@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
   get 'tags/:tag', to: 'pages#search', as: "tag"
+  get 'following/:id', to: 'pages#following', as: "follower_id"
   get 'favorited', to: 'pages#favorited'
   get 'favorited/:id', to: 'pages#favorited', as: "id"
 

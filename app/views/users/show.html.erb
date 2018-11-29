@@ -9,6 +9,7 @@
 
 <h2 class="user-names"><%= @user.first_name %> <%= @user.last_name %></h2>
 <h2 class="user-email"><%= @user.email %></h2>
+<%= link_to 'Follows ' + @user.following.count.to_s + ' cats', follower_id_path(@user), :class => "following" %>
 
 <% if current_user == @user %>
   <%= link_to 'New Cat', new_cat_path, :id => "new-cat-link" %>

@@ -1,0 +1,17 @@
+<h3> <%= @user.email %> follows: </h3>
+<%= stylesheet_link_tag 'userprofile' %>
+<div class="cats-container">
+   <% @user.following.each do |cat| %>
+    <%= link_to cat_path(cat) do %>
+      <div class="cat-show" style="background-image: url(
+         <% if cat.profile.picture_url != nil %>
+           <%= cat.profile.picture_url %>
+         <% else %>
+            /assets/images/cat-unknown.png
+         <% end %>
+      );">
+      <h2 class="cat-name"><%= cat.username %></h2>
+    </div>
+    <% end %>
+  <% end %>
+</div>

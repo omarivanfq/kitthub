@@ -11,6 +11,14 @@
         <%= link_to "#" + tag.name, tag_path(tag.name), :class => "tag" %>
       <% end %>
     </div>
+      <p><span class="likes-count" id="likes-count-<%= @post.id %>"> <%= @post.users.count %> </span> Favorites</p>
+       <span class="share-container">
+        <% if @post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id}) != nil %>
+          <%= render partial: "shares/unshare", locals: {share: @post.shares.find_by(profile_id: current_user.cats.map {|c| c.profile.id})} %>
+        <% else %>
+          <%= render partial: "shares/share", locals: {post: @post} %>
+        <% end %>
+      </span>
     <% if current_user == @post.cat.user %>
       <%= link_to 'Remove', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>

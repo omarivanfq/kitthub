@@ -20,7 +20,7 @@
     </div>
  
     <div class="interact">
-      <%= link_to post.comments.count.to_s + " comments",  post_path(post), :style => "margin-right: 8px;" %>
+      <%= link_to post.comments.count.to_s + " comments", post_path(post), :style => "margin-right: 8px;" %>
       <p><span class="likes-count" id="likes-count-<%= post.id %>"> <%= post.users.count %> </span> Favorites</p>
     </div>
     
