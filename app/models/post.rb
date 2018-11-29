@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :taggings, :dependent => :destroy
   has_many :tags, through: :taggings
   has_many :comments, :dependent => :destroy
-  has_many :favorites
+  has_many :favorites, :dependent => :destroy
   has_many :users, through: :favorites
   has_many :shares, :dependent => :destroy
   has_many :profiles, through: :shares
